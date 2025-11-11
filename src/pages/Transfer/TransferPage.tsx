@@ -11,6 +11,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
+import logoPic from "../../assets/logo.jpg";
 import PillNav from "../../components/nav/PillNav";
 import { useAuth } from "../../app/providers/AuthProvider";
 import { transfer } from "../../lib/api";
@@ -62,7 +63,7 @@ export default function TransferPage() {
   return (
     <div style={{ minHeight: "100vh", background: "#0f1115" }}>
       <PillNav
-        logo="../../src/assets/logo.jpg"
+        logo={logoPic}
         items={[
           { label: "Dashboard", href: "/dashboard", icon: <DashboardOutlined /> },
           { label: "Transfer", href: "/transfer", icon: <SwapOutlined /> },

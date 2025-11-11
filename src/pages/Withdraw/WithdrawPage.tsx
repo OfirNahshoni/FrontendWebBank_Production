@@ -9,6 +9,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 
+import logoPic from "../../assets/logo.jpg";
 import AmountForm from "../../components/forms/AmountForm";
 import PillNav from "../../components/nav/PillNav";
 import { useAuth } from "../../app/providers/AuthProvider";
@@ -50,7 +51,7 @@ export default function WithdrawPage() {
   return (
     <div style={{ minHeight: "100vh", background: "#0f1115" }}>
       <PillNav
-        logo="../../src/assets/logo.jpg"
+        logo={logoPic}
         items={[
           { label: "Dashboard", href: "/dashboard", icon: <DashboardOutlined /> },
           { label: "Transfer", href: "/transfer", icon: <SwapOutlined /> },

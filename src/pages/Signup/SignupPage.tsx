@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, Card } from "antd";
 import { MailOutlined, LockOutlined, PhoneOutlined } from "@ant-design/icons";
 
+import signupPic from "../../assets/signup-pic.jpg";
 import TiltedCard from "../../components/bits/TiltedCard";
 import AuthSplit from "../../components/layout/AuthSplit";
 import { signup } from "../../lib/api";
@@ -126,7 +127,7 @@ export default function SignupPage() {
     <AuthSplit
       leftSlot={
         <TiltedCard
-          imageSrc="../../src/assets/signup-pic.jpg"
+          imageSrc={signupPic}
           captionText="Create Account"
           showMobileWarning={false}
         />
