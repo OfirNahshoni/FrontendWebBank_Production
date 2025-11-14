@@ -126,11 +126,7 @@ export default function SignupPage() {
     <AuthSplit
       leftSlot={
         <TiltedCard
-<<<<<<< HEAD
           imageSrc={signupPic}
-=======
-          imageSrc="../../src/assets/bank-logo1.jpg"
->>>>>>> f0134ae8b6063fd2ee264a66e8a8152344936c3c
           captionText="Create Account"
           showMobileWarning={false}
         />
