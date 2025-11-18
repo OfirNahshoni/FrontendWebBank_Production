@@ -23,11 +23,33 @@ export default function SignupPage() {
 
   // Handle page refresh - ensure we're on the correct route
   useEffect(() => {
-    // On component mount (including after refresh), ensure we're on /signup
-    if (location.pathname !== "/signup") {
-      navigate("/signup", { replace: true });
-    }
-  }, [location.pathname, navigate]);
+    // Check immediately on mount
+    const handleRefresh = () => {
+      const currentPath = window.location.pathname;
+      
+      // If we're not on /signup, force navigation
+      if (currentPath !== "/signup") {
+        // Use window.location for a hard redirect (works even if React Router fails)
+        window.location.replace("/signup");
+        return;
+      }
+      
+      // Check if page content shows "Not Found" (server 404 but React somehow loaded)
+      setTimeout(() => {
+        const bodyText = (document.body?.innerText || document.body?.textContent || "").toLowerCase();
+        const is404Page = (bodyText.includes("not found") || bodyText.includes("404")) && 
+                         !bodyText.includes("create your account") && 
+                         !bodyText.includes("sign up");
+        
+        if (is404Page) {
+          // Redirect to home page (which should work), user can navigate to signup from there
+          window.location.replace("/");
+        }
+      }, 200);
+    };
+    
+    handleRefresh();
+  }, []); // Empty deps - only run once on mount
 
   const handleFinish = async ({ email, password, phone }: SignupFormValues) => {
     setLoading(true);
