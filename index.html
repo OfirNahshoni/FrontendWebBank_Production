@@ -5,6 +5,33 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
+    <script>
+      // Handle SPA routing - run immediately before React loads
+      // This ensures that if the page loads, we can handle the route
+      (function() {
+        const path = window.location.pathname;
+        const validRoutes = ['/', '/login', '/signup', '/dashboard', '/transfer', '/withdraw', '/deposit'];
+        const isAuthRoute = path.startsWith('/auth/');
+        
+        // If it's a valid route, let React Router handle it
+        if (validRoutes.includes(path) || isAuthRoute) {
+          return;
+        }
+        
+        // If we're on an invalid route, check if we can detect a 404
+        // If the body only has "Not Found", redirect to home
+        if (document.body && document.body.textContent && 
+            document.body.textContent.trim() === 'Not Found') {
+          window.location.replace('/');
+          return;
+        }
+        
+        // For any other invalid route, redirect to home
+        if (path !== '/') {
+          window.location.replace('/');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
