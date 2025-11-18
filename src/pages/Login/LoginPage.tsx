@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Form, Input, Checkbox, Button, Card } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 
-import loginPic from "../../assets/logo-login-signup.jpg";
+import loginPic from "../../assets/bank-logo1.jpg";
 import TiltedCard from "../../components/bits/TiltedCard";
 import AuthSplit from "../../components/layout/AuthSplit";
 
