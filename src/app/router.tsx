@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, Navigate, RouterProviderProps, useLocation } from "react-router-dom";
+import { createHashRouter, Navigate, RouterProviderProps, useLocation } from "react-router-dom";
 
 import LoginPage from "../pages/Login";
 import SignupPage from "../pages/Signup";
@@ -21,7 +21,7 @@ const RequireAuth: React.FC<{ children: React.ReactElement }> = ({ children }) =
   return children;
 };
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     element: <LoginPage />,
