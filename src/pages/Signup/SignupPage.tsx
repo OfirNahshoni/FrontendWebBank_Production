@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Form, Input, Button, Card } from "antd";
 import { MailOutlined, LockOutlined, PhoneOutlined } from "@ant-design/icons";
 
-import signupPic from "../../assets/bank-logo1.jpg";
+import signupPic from "../../assets/logo-login-signup.jpg";
 import TiltedCard from "../../components/bits/TiltedCard";
 import AuthSplit from "../../components/layout/AuthSplit";
 import { signup } from "../../lib/api";
@@ -18,7 +18,16 @@ interface SignupFormValues {
 export default function SignupPage() {
   const [form] = Form.useForm<SignupFormValues>();
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
+
+  // Handle page refresh - ensure we're on the correct route
+  useEffect(() => {
+    // On component mount (including after refresh), ensure we're on /signup
+    if (location.pathname !== "/signup") {
+      navigate("/signup", { replace: true });
+    }
+  }, [location.pathname, navigate]);
 
   const handleFinish = async ({ email, password, phone }: SignupFormValues) => {
     setLoading(true);
