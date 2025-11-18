@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { activate } from "../../lib/api";
@@ -7,14 +7,19 @@ import { notifyError, notifySuccess } from "../../lib/notify";
 const ActivatePage: React.FC = () => {
   const navigate = useNavigate();
   const { pincode, JWT } = useParams<{ pincode: string; JWT: string }>();
+  const hasActivated = useRef(false);
 
   useEffect(() => {
     async function runActivation() {
+      if (hasActivated.current) return;
+      
       if (!pincode || !JWT) {
         notifyError("Activation failed", "Activation link is invalid.");
         navigate("/login", { replace: true });
         return;
       }
+
+      hasActivated.current = true;
 
       try {
         await activate(pincode, JWT);
