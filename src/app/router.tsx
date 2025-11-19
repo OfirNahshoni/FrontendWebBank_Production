@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "/auth/:pincode/:JWT",
+    path: "/auth/:pincode/*",
     element: <ActivatePage />,
   },
   {
