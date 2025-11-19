@@ -58,6 +58,7 @@ export async function signup(body: SignupBody): Promise<SignupResponse> {
 export type ActivateResponse = { token: string };
 
 export async function activate(pincode: string, jwt: string): Promise<ActivateResponse> {
+  console.log("activate request: ", pincode, jwt);
   return request<ActivateResponse>(`/auth/${encodeURIComponent(pincode)}/${encodeURIComponent(jwt)}`);
 }
 
